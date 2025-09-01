@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fatma Albastaki</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+          system-ui, sans-serif;
+        background: #000000;
+        color: #f5f5f7;
+        line-height: 1.4;
+        overflow-x: hidden;
+      }
+
+      /* Navigation */
+      .nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 44px;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: saturate(180%) blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 1000;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .nav-content {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 0 22px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-logo {
+        font-size: 17px;
+        font-weight: 600;
+        color: #f5f5f7;
+        text-decoration: none;
+        letter-spacing: -0.022em;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 40px;
+      }
+
+      .nav-link {
+        font-size: 12px;
+        font-weight: 400;
+        color: #f5f5f7;
+        text-decoration: none;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+        letter-spacing: -0.01em;
+      }
+
+      .nav-link:hover {
+        opacity: 1;
+      }
+
+      /* Hero Banner */
+      .hero-banner {
+        width: 100%;
+        height: 100vh;
+        background: #000000;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .hero-gradient {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          ellipse 80% 50% at 50% 40%,
+          rgba(29, 29, 31, 0.4) 0%,
+          transparent 100%
+        );
+      }
+
+      .mesh-gradient {
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        top: -50%;
+        left: -50%;
+        background: radial-gradient(
+            circle at 20% 80%,
+            rgba(120, 119, 198, 0.3) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(255, 0, 128, 0.15) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 40% 40%,
+            rgba(120, 119, 198, 0.2) 0%,
+            transparent 50%
+          );
+        animation: meshMove 20s ease-in-out infinite;
+        opacity: 0.6;
+      }
+
+      @keyframes meshMove {
+        0%,
+        100% {
+          transform: rotate(0deg) scale(1);
+        }
+        33% {
+          transform: rotate(120deg) scale(1.1);
+        }
+        66% {
+          transform: rotate(240deg) scale(0.9);
+        }
+      }
+
+      .hero-content {
+        text-align: center;
+        z-index: 10;
+        position: relative;
+      }
+
+      .hero-title {
+        font-size: clamp(64px, 12vw, 120px);
+        font-weight: 700;
+        margin-bottom: 24px;
+        letter-spacing: -0.04em;
+        color: #f5f5f7;
+        line-height: 0.9;
+      }
+
+      .hero-subtitle {
+        font-size: 28px;
+        color: #a1a1a6;
+        margin-bottom: 80px;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(245, 245, 247, 0.6);
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0px);
+          opacity: 0.6;
+        }
+        50% {
+          transform: translateX(-50%) translateY(-10px);
+          opacity: 1;
+        }
+      }
+
+      /* Content Section */
+      .content-section {
+        background: #000000;
+        padding: 120px 0;
+        text-align: center;
+        position: relative;
+      }
+
+      .content-container {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      .profile-avatar {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+        margin: 0 auto 40px;
+        position: relative;
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05),
+          0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      .profile-avatar:hover {
+        transform: scale(1.05);
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1),
+          0 4px 8px rgba(0, 0, 0, 0.15), 0 16px 48px rgba(0, 0, 0, 0.25);
+      }
+
+      .profile-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .profile-name {
+        font-size: clamp(48px, 8vw, 80px);
+        font-weight: 600;
+        margin-bottom: 16px;
+        letter-spacing: -0.03em;
+        color: #f5f5f7;
+        line-height: 1.05;
+      }
+
+      .profile-title {
+        font-size: 28px;
+        color: #a1a1a6;
+        margin-bottom: 40px;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+      }
+
+      .profile-description {
+        font-size: 19px;
+        color: #a1a1a6;
+        margin-bottom: 60px;
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.4;
+        font-weight: 400;
+      }
+
+      /* Action Section */
+      .action-section {
+        margin-bottom: 80px;
+      }
+
+      .primary-button {
+        background: rgba(245, 245, 247, 0.1);
+        color: #f5f5f7;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 18px 32px;
+        border-radius: 12px;
+        font-size: 17px;
+        font-weight: 400;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-family: inherit;
+        letter-spacing: -0.022em;
+        min-width: 160px;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+      }
+
+      .primary-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transition: left 0.6s;
+      }
+
+      .primary-button:hover::before {
+        left: 100%;
+      }
+
+      .primary-button:hover {
+        background: rgba(245, 245, 247, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .primary-button:active {
+        transform: translateY(0);
+        background: rgba(245, 245, 247, 0.08);
+      }
+
+      /* Social Section */
+      .social-section {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+      }
+
+      .social-link {
+        width: 56px;
+        height: 56px;
+        background: rgba(245, 245, 247, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+      }
+
+      .social-link:hover {
+        background: rgba(245, 245, 247, 0.08);
+        border-color: rgba(255, 255, 255, 0.12);
+        transform: translateY(-2px);
+      }
+
+      .social-link svg {
+        width: 20px;
+        height: 20px;
+        fill: #a1a1a6;
+        transition: fill 0.3s ease;
+      }
+
+      .social-link:hover svg {
+        fill: #f5f5f7;
+      }
+
+      /* Footer */
+      .footer {
+        background: #000000;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 60px 0;
+        text-align: center;
+      }
+
+      .footer-content {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      .footer-text {
+        font-size: 12px;
+        color: #6e6e73;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero-banner {
+          height: 80vh;
+        }
+
+        .profile-avatar-hero {
+          width: 160px;
+          height: 160px;
+        }
+
+        .content-section {
+          padding: 80px 0;
+        }
+
+        .content-container {
+          padding: 0 24px;
+        }
+
+        .profile-title {
+          font-size: 24px;
+        }
+
+        .profile-description {
+          font-size: 17px;
+        }
+
+        .social-section {
+          gap: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .profile-avatar-hero {
+          width: 140px;
+          height: 140px;
+        }
+
+        .profile-description {
+          font-size: 16px;
+          margin-bottom: 40px;
+        }
+      }
+
+      .profile-container {
+        background: linear-gradient(145deg, #111111, #0a0a0a);
+        border-radius: 24px;
+        padding: 60px 40px;
+        max-width: 480px;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        z-index: 10;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.5), 0 20px 40px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .profile-container:hover {
+        transform: translateY(-8px);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.7), 0 30px 60px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Embossed Avatar */
+      .profile-avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        margin: 0 auto 32px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3),
+          0 0 0 3px rgba(255, 255, 255, 0.05), 0 0 0 6px rgba(0, 0, 0, 0.1),
+          0 8px 16px rgba(0, 0, 0, 0.2);
+        transition: all 0.4s ease;
+      }
+
+      .profile-avatar:hover {
+        transform: scale(1.05);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4),
+          0 0 0 3px rgba(255, 255, 255, 0.1), 0 0 0 6px rgba(0, 0, 0, 0.15),
+          0 12px 24px rgba(0, 0, 0, 0.3);
+      }
+
+      .profile-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .profile-name {
+        font-size: 36px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        letter-spacing: -0.02em;
+        color: #f5f5f7;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      .profile-title {
+        font-size: 18px;
+        color: #00ff88;
+        margin-bottom: 40px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+      }
+
+      /* Action Button */
+      .save-button {
+        background: rgba(255, 255, 255, 0.1);
+        color: #f5f5f7;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 16px 32px;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: inherit;
+        margin-bottom: 40px;
+        backdrop-filter: blur(10px);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .save-button:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .save-button:active {
+        transform: translateY(0);
+      }
+
+      /* Social Links */
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+      }
+
+      .social-link {
+        width: 56px;
+        height: 56px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .social-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .social-link svg {
+        width: 20px;
+        height: 20px;
+        fill: #a1a1a6;
+        transition: fill 0.3s ease;
+      }
+
+      .social-link:hover svg {
+        fill: #f5f5f7;
+      }
+
+      /* Contact info tooltip */
+      .contact-info {
+        position: absolute;
+        bottom: -60px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.9);
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 12px;
+        color: #a1a1a6;
+        opacity: 0;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .profile-container:hover .contact-info {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-10px);
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 480px) {
+        body {
+          padding: 20px;
+        }
+
+        .profile-container {
+          padding: 40px 24px;
+        }
+
+        .profile-avatar {
+          width: 120px;
+          height: 120px;
+        }
+
+        .profile-name {
+          font-size: 28px;
+        }
+
+        .profile-title {
+          font-size: 16px;
+        }
+
+        .social-links {
+          gap: 12px;
+        }
+
+        .social-link {
+          width: 48px;
+          height: 48px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="#" class="nav-logo">Profile</a>
+        <ul class="nav-links">
+          <li><a href="#" class="nav-link">About</a></li>
+          <li><a href="#" class="nav-link">Contact</a></li>
+          <li><a href="#" class="nav-link">Connect</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-gradient"></div>
+      <div class="mesh-gradient"></div>
+      <div class="hero-content">
+        <div class="profile-container">
+          <div class="profile-avatar">
+            <img
+              src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+              alt="Fatma Albastaki"
+            />
+          </div>
+
+          <h1 class="profile-name">Fatma Albastaki</h1>
+          <p class="profile-title">ESG Reporting Lead</p>
+
+          <button class="save-button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+            </svg>
+            Save to contacts
+          </button>
+
+          <div class="social-links">
+            <a
+              href="mailto:fatma@company.com"
+              class="social-link"
+              aria-label="Email"
+            >
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                />
+              </svg>
+            </a>
+            <a href="tel:+1234567890" class="social-link" aria-label="Phone">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://linkedin.com/in/fatma-albastaki"
+              class="social-link"
+              aria-label="LinkedIn"
+            >
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
