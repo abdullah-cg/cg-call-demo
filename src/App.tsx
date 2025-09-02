@@ -47,6 +47,24 @@ const App = () => {
     }));
   };
 
+  const getProjectId = () => {
+    // Tab1: Promise To Pay
+    // Tab2: Broken Promise
+    if (activeTab === "tab1") {
+      if (formData[activeTab].language === "en") {
+        return "68b6adf2dba1fea8a2da3981";
+      } else {
+        return "68aebdf28348bea4eedb8fd4";
+      }
+    } else {
+      if (formData[activeTab].language === "en") {
+        return "68b6adf2dba1fea8a2da3981";
+      } else {
+        return "68aebdf28348bea4eedb8fd4";
+      }
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(`Form submitted for ${activeTab}:`, formData[activeTab]);
@@ -90,7 +108,7 @@ const App = () => {
         },
       ],
       consentForCalls: true,
-      projectId: "68aebdf28348bea4eedb8fd4", // add condition based on activeTab and language
+      projectId: getProjectId(),
     });
 
     fetch(apiUrl, { method: "POST", headers, body })
