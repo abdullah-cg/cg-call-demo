@@ -134,7 +134,7 @@ const App = () => {
   return (
     <>
       <ToastContainer />
-      <div className="relative bg-zinc-950 overflow-hidden p-28">
+      <div className="relative bg-zinc-950 overflow-hidden p-8 md:p-28">
         <div className="flex md:flex-row flex-col items-center gap-4">
           <img
             src="./svgviewer-output.svg"
