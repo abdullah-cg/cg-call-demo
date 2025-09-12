@@ -8,6 +8,8 @@ interface FormData {
   lastName: string;
   gender: string;
   phoneNumber: string;
+  email: string;
+  company: string;
   agreeToTerms: boolean;
 }
 
@@ -20,6 +22,8 @@ const initialFormData: FormData = {
   lastName: "",
   gender: "",
   phoneNumber: "",
+  email: "",
+  company: "",
   agreeToTerms: false,
 };
 
@@ -65,9 +69,9 @@ const App = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(`Form submitted for ${activeTab}:`, formData[activeTab]);
+    const currentData = formData[activeTab];
 
     const allFieldsFilled = Object.values(formData[activeTab]).every(
       (value) => value !== ""
@@ -85,6 +89,17 @@ const App = () => {
         transition: Bounce,
       });
       return;
+    }
+
+    try {
+      await fetch("https://ai-caller-backend-f2v6.onrender.com/api/forms", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...currentData, tab: activeTab }),
+      });
+      console.log("✅ Form data saved to backend");
+    } catch (err) {
+      console.error("❌ Failed to save form data", err);
     }
 
     setIsLoading(true);
@@ -340,6 +355,28 @@ const App = () => {
                     placeholder="Enter Phone Number"
                   />
                 </div>
+                <div className="grid gap-2">
+                  <div className="text-white">Email</div>
+                  <input
+                    type="email"
+                    name="email"
+                    value={getCurrentFormData().email}
+                    onChange={handleInputChange}
+                    className="bg-zinc-950 rounded-lg w-full text-white p-4"
+                    placeholder="Enter Email"
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <div className="text-white">Company</div>
+                  <input
+                    type="text"
+                    name="company"
+                    value={getCurrentFormData().company}
+                    onChange={handleInputChange}
+                    className="bg-zinc-950 rounded-lg w-full text-white p-4"
+                    placeholder="Enter Company"
+                  />
+                </div>
                 <div className="flex items-center gap-2">
                   <input
                     type="checkbox"
@@ -442,6 +479,28 @@ const App = () => {
                     onChange={handleInputChange}
                     className="bg-zinc-950 rounded-lg w-full text-white p-4"
                     placeholder="Enter Phone Number"
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <div className="text-white">Email</div>
+                  <input
+                    type="email"
+                    name="email"
+                    value={getCurrentFormData().email}
+                    onChange={handleInputChange}
+                    className="bg-zinc-950 rounded-lg w-full text-white p-4"
+                    placeholder="Enter Email"
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <div className="text-white">Company</div>
+                  <input
+                    type="text"
+                    name="company"
+                    value={getCurrentFormData().company}
+                    onChange={handleInputChange}
+                    className="bg-zinc-950 rounded-lg w-full text-white p-4"
+                    placeholder="Enter Company"
                   />
                 </div>
                 <div className="flex items-center gap-2">
