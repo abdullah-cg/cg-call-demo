@@ -36,6 +36,7 @@ const CollectedData = () => {
               <th className="p-2">Last Name</th>
               <th className="p-2">Email</th>
               <th className="p-2">Phone</th>
+              <th className="p-2">Company</th>
               <th className="p-2">Created</th>
             </tr>
           </thead>
@@ -46,6 +47,7 @@ const CollectedData = () => {
                 <td className="p-2">{form.lastName}</td>
                 <td className="p-2">{form.email}</td>
                 <td className="p-2">{form.phoneNumber}</td>
+                <td className="p-2">{form.company}</td>
                 <td className="p-2">
                   {new Date(form.createdAt).toLocaleString()}
                 </td>
