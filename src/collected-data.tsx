@@ -19,7 +19,7 @@ const CollectedData = () => {
   const [forms, setForms] = useState<FormData[]>([]);
 
   useEffect(() => {
-    fetch("https://ai-caller-backend-f2v6.onrender.com/api/forms")
+    fetch("http://localhost:3000/api/forms")
       .then((res) => res.json())
       .then((data) => setForms(data))
       .catch((err) => console.error("❌ Failed to fetch forms:", err));
