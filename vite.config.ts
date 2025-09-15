@@ -10,4 +10,5 @@ export default defineConfig({
     allowedHosts: ["summit.cleargrid.ae"], // add your domain
     port: 4173, // or whatever you're using
   },
+  base: "/",
 });
