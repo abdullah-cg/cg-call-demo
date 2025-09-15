@@ -19,7 +19,7 @@ const CollectedData = () => {
   const [forms, setForms] = useState<FormData[]>([]);
 
   useEffect(() => {
-    fetch("http://34.32.111.110:3000/api/forms")
+    fetch("/api/forms")
       .then((res) => res.json())
       .then((data) => setForms(data))
       .catch((err) => console.error("❌ Failed to fetch forms:", err));

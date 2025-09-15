@@ -92,7 +92,7 @@ const App = () => {
     }
 
     try {
-      await fetch("http://34.32.111.110/api/forms", {
+      await fetch("/api/forms", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...currentData, tab: activeTab }),
