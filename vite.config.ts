@@ -8,5 +8,5 @@ export default defineConfig({
   server: {
     host: true, // allows access from external IPs
   },
-  base: "/",
+  base: "./",
 });
