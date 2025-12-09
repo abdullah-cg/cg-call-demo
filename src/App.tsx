@@ -350,6 +350,7 @@ const App = () => {
         FirstName: currentData.firstName,
         LastName: currentData.lastName,
         today: "",
+        phone: currentData.phoneNumber,
         time_zone: "Asia/Riyadh",
         [isEnglish ? "date_range" : "date_range_arabic"]: "{today}-31",
       };
