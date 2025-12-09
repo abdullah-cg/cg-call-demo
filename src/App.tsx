@@ -53,7 +53,7 @@ const tabs: Tab[] = [
   },
   {
     id: "fresh",
-    label: "Talk to Jabi",
+    label: "Jabi",
     description:
       "Jabi steps outside the call flow to show you its logic, capabilities, and tone on command",
   },
@@ -295,31 +295,14 @@ const App = () => {
 
     // Save form data to backend
     try {
-      const response = await fetch("/api/forms", {
+      await fetch("/api/forms", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...currentData, tab: activeTab }),
       });
-
-      if (!response.ok) {
-        throw new Error("Failed to save form data");
-      }
-
-      console.log("✅ Form data saved to backend and Slack notification sent");
+      console.log("✅ Form data saved to backend");
     } catch (err) {
       console.error("❌ Failed to save form data", err);
-      toast.error("Failed to save form data", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "dark",
-        transition: Bounce,
-      });
-      setIsSubmitting(false);
-      return;
     }
 
     setIsSubmitting(true);
@@ -478,40 +461,19 @@ const App = () => {
         <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
           {/* Header */}
           <header className="mb-12">
-            <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
-              <div className="flex flex-wrap items-center gap-4">
-                <div className="flex items-center gap-3">
-                  <img
-                    src="./svgviewer-output.svg"
-                    alt="cleargrid_logo"
-                    height={41}
-                    width={154}
-                  />
-                </div>
-                <div className="hidden md:block w-px h-6 bg-white/20" />
-                <h1 className="text-2xl md:text-[26px] font-medium text-white/90">
-                  AI Agent Dashboard
-                </h1>
+            <div className="flex flex-wrap items-center gap-4 mb-3">
+              <div className="flex items-center gap-3">
+                <img
+                  src="./svgviewer-output.svg"
+                  alt="cleargrid_logo"
+                  height={41}
+                  width={154}
+                />
               </div>
-              <a
-                href="/collected-data"
-                className="px-4 py-2 bg-white/[0.03] border border-white/[0.06] rounded-xl text-sm text-white/70 hover:text-white hover:bg-white/[0.05] transition-colors flex items-center gap-2"
-              >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-                View Submissions
-              </a>
+              <div className="hidden md:block w-px h-6 bg-white/20" />
+              <h1 className="text-2xl md:text-[26px] font-medium text-white/90">
+                AI Agent Dashboard
+              </h1>
             </div>
             <p className="text-white/50 text-[15px] max-w-xl">
               Manage workflows for broken promises, PTP follow-ups, and fresh
