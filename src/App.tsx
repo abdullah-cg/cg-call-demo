@@ -307,7 +307,7 @@ const App = () => {
 
     setIsSubmitting(true);
 
-    const apiUrl = "https://api.vodex.ai/api/v1/trigger-call";
+    const apiUrl = "https://api.clearvoice.cleargrid.ae/api/v1/trigger-call";
     const headers = {
       dburl: "Vodex_1711541026020",
       "Content-Type": "application/json",
