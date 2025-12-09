@@ -13,7 +13,7 @@ interface FormData {
   agreeToTerms: boolean;
 }
 
-type TabId = "ptp" | "broken" | "fresh";
+type TabId = "ptp" | "broken" | "jabi";
 
 interface Tab {
   id: TabId;
@@ -52,7 +52,7 @@ const tabs: Tab[] = [
     description: "Follow up after missed commitments",
   },
   {
-    id: "fresh",
+    id: "jabi",
     label: "Talk to Jabi",
     description:
       "Jabi steps outside the call flow to show you its logic, capabilities, and tone on command",
@@ -218,7 +218,7 @@ const App = () => {
   const [formData, setFormData] = useState<Record<TabId, FormData>>({
     ptp: { ...initialFormData },
     broken: { ...initialFormData },
-    fresh: { ...initialFormData },
+    jabi: { ...initialFormData },
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -253,9 +253,9 @@ const App = () => {
         en: "68c8045da78c79da04f2fc80",
         ar: "68c80475ebef60f998708c3f",
       },
-      fresh: {
-        en: "YOUR_FRESH_EN_PROJECT_ID", // TODO: Add project ID
-        ar: "YOUR_FRESH_AR_PROJECT_ID", // TODO: Add project ID
+      jabi: {
+        en: "69383c5249471390443b01a3",
+        ar: "69383c5ddafe3647dd5e7773",
       },
     };
 
@@ -344,11 +344,14 @@ const App = () => {
         [isEnglish ? "date_range" : "date_range_arabic"]: "{today}-30",
         dateutil: "{today}+4d",
       };
-    } else if (activeTab === "fresh") {
-      // Fresh workflow (keep existing for now)
+    } else if (activeTab === "jabi") {
+      // Jabi workflow
       callData = {
-        ...callData,
-        DaysPastDue: "7",
+        FirstName: currentData.firstName,
+        LastName: currentData.lastName,
+        today: "",
+        time_zone: "Asia/Riyadh",
+        [isEnglish ? "date_range" : "date_range_arabic"]: "{today}-31",
       };
     }
 
