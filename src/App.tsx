@@ -53,7 +53,7 @@ const tabs: Tab[] = [
   },
   {
     id: "fresh",
-    label: "Jabi",
+    label: "Talk to Jabi",
     description:
       "Jabi steps outside the call flow to show you its logic, capabilities, and tone on command",
   },
@@ -315,30 +315,39 @@ const App = () => {
     };
 
     // Build call payload based on workflow type
+    const isEnglish = currentData.language === "en";
+
+    // Common variables for all workflows
     let callData: Record<string, string> = {
       FirstName: currentData.firstName,
       LastName: currentData.lastName,
-      Gender: currentData.gender,
       amount: "5000",
-      time_zone: "Asia/Dubai",
+      time_zone: "Asia/Riyadh",
       phone: currentData.phoneNumber,
+      PurchaseDate: "30/09/2025",
+      DueDate: "20/10/2025",
+      end_of_month: "",
     };
 
     if (activeTab === "ptp") {
-      callData = { ...callData, DueDate: "1/9/2025", today: "" };
-    } else if (activeTab === "broken") {
+      // Promise to Pay workflow
       callData = {
         ...callData,
-        DueDate: "20/8/2025",
-        today: "",
-        PurchaseDate: "1/8/2025",
-        PTPDate: "10/9/2025",
+        [isEnglish ? "date_range" : "date_range_arabic"]: "{today}-31",
+      };
+    } else if (activeTab === "broken") {
+      // Broken Promise workflow
+      callData = {
+        ...callData,
+        Merchant: "Noon",
+        PTPDate: "15/11/2025",
+        [isEnglish ? "date_range" : "date_range_arabic"]: "{today}-30",
+        dateutil: "{today}+4d",
       };
     } else if (activeTab === "fresh") {
+      // Fresh workflow (keep existing for now)
       callData = {
         ...callData,
-        DueDate: "15/9/2025",
-        today: "",
         DaysPastDue: "7",
       };
     }
